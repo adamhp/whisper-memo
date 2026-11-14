@@ -1,0 +1,26 @@
+name: Release
+
+# Push a tag like v0.1.0 to build and publish to PyPI.
+# One-time setup: on pypi.org, add a "trusted publisher" for this repo,
+# workflow release.yml, environment pypi. No API token is needed.
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write # trusted publishing
+      contents: write # create the GitHub release
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Check tag matches package version
+        run: test "v$(uv version --short)" = "$GITHUB_REF_NAME"
+      - run: uv build
+      - run: uv publish --trusted-publishing always
+      - run: gh release create "$GITHUB_REF_NAME" dist/* --generate-notes
+        env:
+          GH_TOKEN: ${{ github.token }}
