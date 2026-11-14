@@ -6,6 +6,12 @@ No account, no API key, no audio leaves your computer.
 
 ![whisper-memo recording and transcribing a memo](https://raw.githubusercontent.com/adamhp/whisper-memo/main/docs/demo.gif)
 
+## Why
+
+I built this project as a simple way to capture changes I wanted to make during quality review checks on my Claude development.
+While reviewing changes, I activate whisper-memo and just talk, then paste that into Claude.
+There are many solutions to this problem, but I had some specific needs, so I built this small tool.
+
 ## Install
 
 With [uv](https://docs.astral.sh/uv/) (recommended) or [pipx](https://pipx.pypa.io/):
@@ -43,12 +49,12 @@ Press **Enter** to start recording and **Enter** again to stop. **Ctrl+C** quits
 
 Say **"new line"** while recording to split the transcript into bullet points:
 
-> "Buy milk, new line, call mom, new line, book flights"
+> "Rename the fetch helper to load user, new line, add a test for the empty list case, new line, drop the unused import in the CLI module"
 
 ```
-- Buy milk
-- Call mom
-- Book flights
+- Rename the fetch helper to load user
+- Add a test for the empty list case
+- Drop the unused import in the CLI module
 ```
 
 | Option | Default | |
